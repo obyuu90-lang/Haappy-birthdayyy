@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Letter ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    max-width:700px;
+    width:100%;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+h1{
+    color:#ff4f81;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    background:#ff4f81;
+    color:white;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.hidden{
+    display:none;
+}
+
+img{
+    max-width:100%;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.letter{
+    text-align:left;
+    line-height:1.8;
+    margin-top:20px;
+}
+
+.confetti{
+    font-size:40px;
+    animation:float 1s infinite alternate;
+}
+
+@keyframes float{
+    from{transform:translateY(0);}
+    to{transform:translateY(-10px);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="app"></div>
+
+<script>
+
+const questions = [
+{
+question:"What is my favorite thing about you?",
+answers:[
+"Your hair",
+"Your eyes",
+"How safe I feel with you",
+"How full you make me feel"
+],
+correct:3
+},
+{
+question:"What was my first impression of you?",
+answers:[
+"Bad boy",
+"Annoying",
+"Cute",
+"Serious"
+],
+correct:0
+},
+{
+question:"What do I think is your biggest green flag?",
+answers:[
+"Your looks",
+"How caring you are",
+"Your fashion sense",
+"Your cooking skills"
+],
+correct:1
+},
+{
+question:"What is one thing I wish you knew about yourself?",
+answers:[
+"You're funnier than you think",
+"You're smarter than you think",
+"You're more loved than you realize",
+"You should sleep more"
+],
+correct:2
+},
+{
+question:"What are you to me?",
+answers:[
+"My favorite person",
+"My safe place",
+"My best friend",
+"All of the above"
+],
+correct:3
+}
+];
+
+let currentQuestion = 0;
+
+const app = document.getElementById("app");
+
+showIntro();
+
+function showIntro(){
+app.innerHTML = `
+<h1>⚠️ Birthday Security Check</h1>
+
+<p>
+Before accessing your birthday letter,
+please verify that you are msmoosti.
+</p>
+
+<p><b>Minimum score required: 100%</b></p>
+
+<p>Good luck, Msmoosti ❤️</p>
+
+<button onclick="showQuestion()">Start Verification</button>
+`;
+}
+
+function showQuestion(){
+
+const q = questions[currentQuestion];
+
+app.innerHTML = `
+<h1>Question ${currentQuestion+1} / 5</h1>
+<h2>${q.question}</h2>
+<div id="answers"></div>
+`;
+
+const answersDiv = document.getElementById("answers");
+
+q.answers.forEach((answer,index)=>{
+const btn = document.createElement("button");
+btn.innerText = answer;
+btn.onclick = ()=>checkAnswer(index);
+answersDiv.appendChild(btn);
+});
+
+}
+
+function checkAnswer(index){
+
+if(index === questions[currentQuestion].correct){
+
+currentQuestion++;
+
+if(currentQuestion < questions.length){
+showQuestion();
+}else{
+showSuccess();
+}
+
+}else{
+showFail();
+}
+
+}
+
+function showFail(){
+
+app.innerHTML = `
+<h1>🚫 ACCESS DENIED</h1>
+
+<p>
+You clearly don't know your girlfriend well enough.
+</p>
+
+<p>Please try again.
+</p>
+
+<button onclick="restartQuiz()">Restart Quiz</button>
+`;
+
+}
+
+function restartQuiz(){
+currentQuestion = 0;
+showIntro();
+}
+
+function showSuccess(){
+
+app.innerHTML = `
+<div class="confetti">🎉 🎊 🎉 🎊 🎉</div>
+
+<h1>Congratulations!</h1>
+
+<p>
+You have successfully completed the
+Msmoosti Verification Exam.
+</p>
+
+<p><b>Final Score: 100%</b></p>
+
+<p><b>Status:</b> Still my favorite person ❤️</p>
+
+<p><b>Access to Birthday Letter: Granted.</b></p>
+
+<button onclick="showLetter()">💌 Unlock Birthday Letter</button>
+`;
+
+}
+
+function showLetter(){
+
+app.innerHTML = `
+
+<h1>Happy Birthday ❤️</h1>
+
+<img src="IMG_3280.jpg" alt="Our Photo">
+
+<div class="letter">
+
+<p>Happy Birthday, my love.</p>
+
+<p>
+I don't think you'll ever truly understand how grateful I am
+to have you in my life. Before you, I never imagined I could
+love someone the way I love you now. Somehow, you've become
+my favorite person, my safe place, and the first person I
+want to tell everything to.
+</p>
+
+<p>
+Thank you for all the ways you make my life better, even the
+little things you don't notice. Thank you for making me laugh
+when I need it most, for being patient with me, for caring
+about me, and for making me feel loved every single day.
+</p>
+
+<p>
+One of my favorite things about you is how full you make me
+feel. Not because you complete me, but because you add so
+much happiness, comfort, and love to my life that it's
+impossible not to feel lucky when I'm with you.
+</p>
+
+<p>
+I wish I could give you everything you've ever wanted because
+nobody deserves happiness more than you do. I hope this year
+brings you success, good memories, endless laughter, and all
+the things you've been working so hard for.
+</p>
+
+<p>
+And Inshallah, this year you'll get the job, I'll get the
+ring, and we'll stop talking about getting married and
+actually get married. 🤭
+</p>
+
+<p>
+Until then, thank you for being my favorite person, my safe
+place, and the best thing that's ever happened to me.
+</p>
+
+<p>
+Happy Birthday my coochie coochie MWWAAAHHHHHHHH.
+</p>
+
+<p>
+I love you forever. ❤️
+</p>
+
+</div>
+`;
+
+}
+
+</script>
+
+</body>
+</html>
